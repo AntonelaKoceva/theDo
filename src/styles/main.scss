@@ -1,0 +1,277 @@
+@use './abstracts/variables'as *;
+@use './abstracts/mixins'as *;
+@use './base/reset';
+@use './base/fonts';
+
+body{
+    background-color: $color-white;
+    *{
+        font-family: $font-oxanium;
+        text-transform: lowercase;
+    }
+    
+}
+
+.main-padding{
+    padding-left: 60px;
+    padding-right: 60px;
+    @include media-down(m){
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    @include media-down(s){
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+header{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+main{
+    .no-list{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 15px;
+    }
+}
+
+.btn {
+  outline: none;
+  background: none;
+  text-align: center;
+  display: inline-block;
+  width: 180px;
+  height: 40px;
+  margin: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: color .5s;
+  border: 2px solid;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    position: absolute; 
+    height: 200px;
+    width: 250px;
+    border-radius: 50%;
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+    z-index: 1;
+  }
+
+  span{
+    z-index: 2;
+    position: relative;
+    transition: all .7s;
+  }
+
+  &:hover {
+    &:before {
+      top: -40px;
+      left: -40px;
+    }
+  }
+}
+
+.primary-btn {
+  border-color: $color-red;
+  span{
+    color: $color-red;
+  }
+
+  &:before {
+    background-color: $color-red;
+  }
+
+  &:hover {
+    span{
+      transition: all .7s;
+      color: $color-white;
+    }
+  }
+}
+
+.secondary-btn {
+  border-color: $color-light-blue;
+  span{
+    color: $color-light-blue;
+  }
+
+  &:before {
+    background-color: $color-light-blue;
+  }
+
+  &:hover {
+    span{
+      color: $color-white;
+      transition: all .7s;
+    }
+  }
+}
+
+.hyper-btn{
+  border: 0;
+  border-bottom: 2px solid #003291a3;
+  span{
+    color: $color-light-blue;
+  }
+  &:before{
+    background-color: #003291a3;
+  }
+  &:hover {
+    span{
+      color: $color-white;
+      transition: all .7s;
+    }
+  }
+}
+
+.danger-btn{
+  background-color: $color-black;
+  border-color: $color-black;
+
+  span{
+    color: $color-red;
+  }
+
+  &:before{
+    background-color: $color-red;
+  }
+
+  &:hover{
+    border-color: $color-red;
+    transition: all .7s;
+
+    span{
+      transition: all .7s;
+      color: $color-black;
+    }
+  }
+}
+
+input{
+  border-bottom: 2px solid #003291a3;
+  margin-bottom: 20px;
+  padding: 15px 10px;
+  padding-bottom: 5px;
+  color: $color-light-blue;
+
+  &::placeholder{
+    color: #003291a3;
+  }
+}
+
+.items-input{
+  display: flex;
+  gap: 30px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2{
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: $color-red;
+}
+
+h3{
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.popup-overlay{
+  background-color: #090b3c8c;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  z-index: 20;
+
+  .popup{
+    background-color: $color-white;
+    padding: 30px;
+    max-height: 100dvh;
+    margin: 15px;
+    overflow: auto;
+  }
+}
+
+.items-preview{
+  .item{
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+
+    span{
+      color: $color-black;
+    }
+
+    .status{
+      border: 2px solid $color-black;
+      border-radius: 3px;
+      width: 25px;
+      height: 25px;
+      display: block;
+    }
+
+    &.done{
+      .status{
+        background-image: url('src/assets/images/done.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+      }
+
+      .text{
+        text-decoration: line-through;
+        text-decoration-color: $color-red;
+        text-decoration-thickness: 2px;
+      }
+    }
+  }
+}
+
+.new-list{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.lists{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
+
+  h3{
+    color: $color-light-blue;
+    margin: 0 20px;
+  }
+
+  .list{
+    width: fit-content;
+  }
+}
